@@ -1,0 +1,26 @@
+.jumbotron {
+    background: #D95D67;
+    color: #FFF;
+}
+
+input {
+    margin: 20px 0px;
+}
+
+h3 {
+    text-align: center;
+}
+
+.button_container {
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    margin: 0 auto;
+}
+
+.btn {
+    margin-right: 10px;
+}

@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="style.css">
+
+        <script src="quiz.js"></script>
+        <meta charset="UTF-8">
+        <title>Quiz App | Yvonne Huang</title>
+
+    </head>
+    <body>
+        <div id="quiz_widget">
+
+        </div>
+    </body>
+
+    <script id="initial" type="text/x-handlebars-template">
+        <div class="jumbotron text-center">
+            <h1>Welcome to the Quiz App!</h1>
+        </div>
+        <div class="container h-100">
+            <div class="row align-items-center h-100">
+                <div class="col-6 mx-auto">
+                    <form id="form">
+                        <h2 id="label">Enter your information below:</h2>
+                        <input type="text" class="form-control" id="Fname" placeholder="Enter your name here" required>
+
+                        <select class="form-control" id="quiz_select" required>
+                            <option value="Quiz1">Quiz 1: Computer Science</option>
+                            <option value="Quiz2">Quiz 2: Trivia</option>
+                        </select>
+
+                        <input type="submit">
+                    </form>
+                </div>
+            </div>
+        </div>
+
+    </script>
+
+    <script id= "multiple_choice" type="text/x-handlebars-template">
+        
+        <div class="container">
+            <div class="jumbotron text-center">
+                <h1>{{currentQuiz}}</h1>
+                <p>Good luck, {{Fname}}!</p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="questions">
+
+                        <h3 id="question_num"> Question: {{currentQuestion.Question}}</h3>
+                        
+                        <label for=""><input type="radio"  value="{{currentQuestion.Answers.[0]}}" name="q2">{{currentQuestion.Answers.[0]}}</label><br>
+                        <label for=""><input type="radio"  value="{{currentQuestion.Answers.[1]}}" name="q2">{{currentQuestion.Answers.[1]}}</label><br>
+                        <label for=""><input type="radio"  value="{{currentQuestion.Answers.[2]}}" name="q2">{{currentQuestion.Answers.[2]}}</label><br>
+                        <label for=""><input type="radio"  value="{{currentQuestion.Answers.[3]}}" name="q2">{{currentQuestion.Answers.[3]}}</label><br><br>
+                        <div id="answer">
+                            <input type="submit" data-answer="submit">
+                        </div>
+                    </div>
+                </div>
+                <div class = "col">
+                    <div id= "score-bar" class="counter" style="margin-top: 20px">
+                        <h4 id="correct">Questions Correct: {{questions_correct}}</h4>
+                        <h4 id="wrong">Questions Incorrect: {{questions_wrong}} </h4>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id= "good_feedback" type="text/x-handlebars-template">
+        <div class="jumbotron text-center">
+            <h1>Correct!</h1>
+        </div>
+
+        <h3 class=".text-center">{{good_feedback}}</h3>
+        
+    </script>
+
+    <script id="bad_feedback" type="text/x-handlebars-template">
+        <div class="jumbotron text-center">
+            <h1>Incorrect!</h1>
+        </div>
+
+        <h3>
+            Explanation: {{currentQuestion.Explanation}}
+            <br>
+            Correct answer was: {{currentQuestion.Correct_Answer}}
+        </h3>
+
+        <button type="button" class="btn btn-success" id="continue">Continue</button>
+    </script>
+
+    <script id="final_results" type="text/x-handlebars-template">
+        <div class="jumbotron text-center">
+            <h1>You have completed the quiz!</h1>
+        </div>
+
+        <h3>
+            Questions Correct: {{questions_correct}}
+            <br>
+            Questions Incorrect: {{questions_wrong}}
+        </h3>
+
+        <div class="button_container">
+            <button type="button" class="btn btn-danger" id="Back" data-back="Back">Back</button>
+            <button type="button" class="btn btn-success" id="Retry" data-retry="Retry">Retry</button>
+        </div>
+    </script>
+</html>
