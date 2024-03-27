@@ -1,4 +1,4 @@
-const startTime = new Date();
+var startTime = new Date();
 var interval;
 
 const model = {
@@ -139,6 +139,34 @@ function displayElapsedTime() {
     document.querySelector('#timer').innerHTML = `Elapsed Time: ${seconds} seconds`;
 }
 
+function render_end() {
+    render_view(model, "#final_results");
+    clearInterval(interval);
+    displayElapsedTime()
+
+    const final_score = (appState.questions_correct * 20);
+    if (final_score < 80){
+        document.querySelector('#end_message').innerHTML = `Sorry ${appState.Fname}, you fail the quiz. Your score is: ${final_score}%`
+    } else {
+        document.querySelector('#end_message').innerHTML = `Congratulations ${appState.Fname}! You passed the quiz. Your score is: ${final_score}%`
+    }
+
+    document.querySelector('#Back').onclick =(event) =>{
+        render_view(model, "#initial");
+        startTime = new Date();
+        clearInterval(interval);
+    }
+    document.querySelector('#Retry').onclick = (event)=>{
+        console.log("loading retry");
+        appState.currentQuestionIndex = 1;
+        appState.questions_correct = 0;
+        appState.questions_wrong = 0;
+        startTime = new Date();
+        clearInterval(interval);
+        create_question(appState.currentQuestionIndex)
+    }
+}
+
 const render_view =(model,view)=>{
     template_source = document.querySelector(view).innerHTML;
     var template = Handlebars.compile(template_source);
@@ -175,27 +203,7 @@ const handle_answer = (event) =>{
                 appState.currentQuestionIndex +=1;
                 create_question(appState.currentQuestionIndex); 
                 }else if(appState.currentQuestionIndex === appState.totalQuestions){
-                    render_view(model, "#final_results");
-                    clearInterval(interval);
-                    displayElapsedTime()
-
-                    const final_score = (appState.questions_correct * 20);
-                    if (final_score < 80){
-                        document.querySelector('#end_message').innerHTML = `Sorry ${appState.Fname}, you fail the quiz. Your score is: ${final_score}%`
-                    } else {
-                        document.querySelector('#end_message').innerHTML = `Congratulations ${appState.Fname}! You passed the quiz. Your score is: ${final_score}%`
-                    }
-
-                    document.querySelector('#Back').onclick =(event) =>{
-                        render_view(model, "#initial");
-                    }
-                    document.querySelector('#Retry').onclick = (event)=>{
-                        console.log("loading retry");
-                        appState.currentQuestionIndex = 1;
-                        appState.questions_correct = 0;
-                        appState.questions_wrong = 0;
-                        create_question(appState.currentQuestionIndex)
-                    }
+                    render_end();
                 }
             }, 1000);
                     
@@ -207,6 +215,8 @@ const handle_answer = (event) =>{
                 if(appState.currentQuestionIndex < appState.totalQuestions) {
                     appState.currentQuestionIndex +=1;
                     create_question(appState.currentQuestionIndex); 
+                } else {
+                    render_end();
                 }
             }
         }
