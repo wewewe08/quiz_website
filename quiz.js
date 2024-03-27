@@ -1,3 +1,6 @@
+const startTime = new Date();
+var interval;
+
 const model = {
     "results": 
     {
@@ -130,6 +133,12 @@ document.addEventListener('DOMContentLoaded',function(){
     }
 );
 
+function displayElapsedTime() {
+    const elapsedTime = new Date() - startTime;
+    const seconds = Math.floor(elapsedTime / 1000);
+    document.querySelector('#timer').innerHTML = `Elapsed Time: ${seconds} seconds`;
+}
+
 const render_view =(model,view)=>{
     template_source = document.querySelector(view).innerHTML;
     var template = Handlebars.compile(template_source);
@@ -167,6 +176,16 @@ const handle_answer = (event) =>{
                 create_question(appState.currentQuestionIndex); 
                 }else if(appState.currentQuestionIndex === appState.totalQuestions){
                     render_view(model, "#final_results");
+                    clearInterval(interval);
+                    displayElapsedTime()
+
+                    const final_score = (appState.questions_correct * 20);
+                    if (final_score < 80){
+                        document.querySelector('#end_message').innerHTML = `Sorry ${appState.Fname}, you fail the quiz. Your score is: ${final_score}%`
+                    } else {
+                        document.querySelector('#end_message').innerHTML = `Congratulations ${appState.Fname}! You passed the quiz. Your score is: ${final_score}%`
+                    }
+
                     document.querySelector('#Back').onclick =(event) =>{
                         render_view(model, "#initial");
                     }
@@ -197,10 +216,13 @@ const handle_answer = (event) =>{
 const create_question = (index) => {
     appState.currentQuestion = model.results[appState.currentQuiz][`Question${index}`];
     render_view(model, "#multiple_choice")
+    displayElapsedTime();
+    interval = setInterval(displayElapsedTime, 1000);
     return appState.currentQuestion; 
 }
 
 const displayGoodMessage = () => {
+    clearInterval(interval);
     render_view(model, '#good_feedback');
     setTimeout (() =>{
        
@@ -208,5 +230,6 @@ const displayGoodMessage = () => {
 } 
 
 const displayBadMessage = () =>{
+    clearInterval(interval);
     render_view(model, '#bad_feedback');
 }
