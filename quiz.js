@@ -69,14 +69,14 @@ const model = {
             "Question4" :{
                 "QuestionType" : "multiple_choice",
                 "Question": "What does HTML stand for?",
-                "Answers" : ["Hyper Turbulent Machine Language","Happy Tales Musical Lyrics","","Hypertext Markup Language", "Web Development"],
+                "Answers" : ["Hyper Turbulent Machine Language","Happy Tales Musical Lyrics","Hypertext Markup Language", "Web Development"],
                 "Correct_Answer": "Hypertext Markup Language",
                 "Explanation": "Hypertext Markup Language (HTML) is the language used to create the structure of a web page."
             },
             "Question5" :{
                 "QuestionType" : "picture",
                 "Question": "Which of the following is the correct way to create an array in JavaScript?",
-                "Answers" : ["web_correct.png", "web_incorrect.png"],
+                "Answers" : ["web_correct.png", "web_wrong.png"],
                 "Correct_Answer": "web_correct.png",
                 "Explanation" : "The other image is how you would declare an array in Java, not JavaScript."
             }
