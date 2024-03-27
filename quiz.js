@@ -22,63 +22,63 @@ const model = {
             },
             "Question3" :{
                 "QuestionType": "multiple_choice",
-                "Question": "How do you declare a variable in JavaScript?",
-                "Answers" : ["int num = 1","var num = 2", "num = 3", "None of the above"],
-                "Correct_Answer": "var num = 2",
-                "Explanation": "Var and let are used to declare variables in Javascript."
+                "Question": "Which of the following is the correct way to write a comment in Python?",
+                "Answers" : ["// This is a comment.", "# This is a comment.", "/* This is a comment. */", "This is a comment."],
+                "Correct_Answer": "# This is a comment.",
+                "Explanation": "In Python, you write comments using '#'"
 
             },
             "Question4" :{
-                "QuestionType": "multiple_choice",
+                "QuestionType": "narrative",
                 "Question": "In OOP, which keyword is used to represent that a method or variable belongs to a class rather than an instance of the class?",
-                "Answers" : ["this", "static", "final", "abstract"],
+                "Answers" : ["static", "final"],
                 "Correct_Answer": "static",
                 "Explanation": "'static' is the keyword used to declare class-level methods and variables. They can be accessed directly without creating a new instance of the class.",
             },
             "Question5" :{
-                "QuestionType" : "multiple_choice",
-                "Question": "What do the following selectors mean in CSS? '.' , '#' , 'h1'",
-                "Answers" : ["class, ID, element", "paragraph, class, header", "period, hashtag, header1","return, tag, id"],
-                "Correct_Answer": "class, ID, element",
-                "Explanation" : "The selectors in CSS are used to select specific elements that you want to style on a web page."
+                "QuestionType" : "picture",
+                "Question": "Which picture represents the alpha-beta pruning algorithm?",
+                "Answers" : ["algo_correct.jpg", "algo_wrong.jpg"],
+                "Correct_Answer": "algo_correct.jpg",
+                "Explanation" : "The other algorithm shown is of the Depth-first Search algorithm."
             }
        }, 
         "QUIZ2" :{
-            "QuizName" : "Math",
+            "QuizName" : "Web Development",
             "Question1" :{
                 "QuestionType" : "multiple_choice",
-                "Question": "Who wrote the novel 'To Kill a Mockingbird'?",
-                "Answers" : ["Harper Lee", "Ernest Hemingway", "F. Scott Fitzgerald", "Mark Twain"],
-                "Correct_Answer": "Harper Lee",
-                "Explanation": "'To Kill a Mockingbird' was written by Harper Lee and published in 1960. It won the Pulitzer Prize for Fiction in 1961."
+                "Question": "Which of the following languages are used to style a web page?",
+                "Answers" : ["HTML", "JavaScript", "JSwing", "CSS"],
+                "Correct_Answer": "CSS",
+                "Explanation": "CSS (Cascading Style Sheets) is used for styling web pages. It controls what and how media is displayed."
             },
             "Question2" :{
                 "QuestionType" : "multiple_choice",
-                "Question": "Who painted the Mona Lisa?",
-                "Answers" : ["Vincent van Gogh", "Pablo Picasso", "Leonardo da Vinci", "Michelangelo"],
-                "Correct_Answer": "Leonardo da Vinci",
-                "Explanation": "The Mona Lisa is one of the most famous paintings in the world. It was painted by the Italian artist Leonardo da Vinci.",
+                "Question": "What do the following selectors mean in CSS? '.' , '#' , 'p'",
+                "Answers" : ["class, id, element","period, hashtag, paragraph","dot, pound key, letter p","html, java, python"],
+                "Correct_Answer": "class, id, element",
+                "Explanation": "Selectors are used to declare specific areas that need to be modified.",
             },
             "Question3" :{
-                "QuestionType" : "multiple_choice",
-                "Question": "Who is the CEO of Tesla and SpaceX?",
-                "Answers" : ["Jeff Bezos", "Bill Gates", "Elon Musk", "Mark Zuckerberg"],
-                "Correct_Answer": "Elon Musk",
-                "Explanation": "Elon Musk is the CEO of both Tesla, Inc., a company known for electric vehicles and renewable energy solutions, and SpaceX, a company focused on space exploration and transportation.",
+                "QuestionType": "multiple_choice",
+                "Question": "How do you declare a variable in JavaScript?",
+                "Answers" : ["int num = 1","var num = 2", "num = 3", "None of the above"],
+                "Correct_Answer": "var num = 2",
+                "Explanation": "Var and let are used to declare variables in Javascript."
             },
             "Question4" :{
                 "QuestionType" : "multiple_choice",
-                "Question": "Which country is both a continent and an island?",
-                "Answers" : ["Australia", "Japan", "Greenland", "Madagascar"],
-                "Correct_Answer": "Australia",
-                "Explanation": "Australia is the world's smallest continent and the largest island, located entirely in the southern hemisphere.",
+                "Question": "What does HTML stand for?",
+                "Answers" : ["Hyper Turbulent Machine Language","Happy Tales Musical Lyrics","","Hypertext Markup Language", "Web Development"],
+                "Correct_Answer": "Hypertext Markup Language",
+                "Explanation": "Hypertext Markup Language (HTML) is the language used to create the structure of a web page."
             },
             "Question5" :{
-                "QuestionType" : "multiple_choice",
-                "Question": "Who was the first president of the United States?",
-                "Answers" : ["Thomas Jefferson", "George Washington", "Abraham Lincoln", "John Adams"],
-                "Correct_Answer": "George Washington",
-                "Explanation" : "George Washington served as the first President of the United States from 1789 to 1797."
+                "QuestionType" : "picture",
+                "Question": "Which of the following is the correct way to create an array in JavaScript?",
+                "Answers" : ["web_correct.png", "web_incorrect.png"],
+                "Correct_Answer": "web_correct.png",
+                "Explanation" : "The other image is how you would declare an array in Java, not JavaScript."
             }
        }  
     }
@@ -109,24 +109,16 @@ document.addEventListener('DOMContentLoaded',function(){
             if(document.querySelector('#quiz_select').value === 'Quiz1'){
                 appState.currentQuiz = "QUIZ1";
                 appState.totalQuestions = Object.keys(model.results.QUIZ1).filter(key => key.startsWith('Question')).length;
-                appState.question_type = model.results[appState.currentQuiz][`Question${appState.currentQuestionIndex}`].QuestionType;
                 create_question(appState.currentQuestionIndex);
-
-                render_view(model, "#multiple_choice")
-
             }else if(document.querySelector('#quiz_select').value === 'Quiz2'){
                 appState.currentQuiz = "QUIZ2";
-                appState.totalQuestions = Object.keys(model.results.QUIZ1).filter(key => key.startsWith('Question')).length;
-                appState.question_type = model.results[appState.currentQuiz][`Question${appState.currentQuestionIndex}`].QuestionType;
+                appState.totalQuestions = Object.keys(model.results.QUIZ2).filter(key => key.startsWith('Question')).length;
                 create_question(appState.currentQuestionIndex);
-
-                render_view(model, "#multiple_choice")
-
             }
-            
+
             document.querySelector('#quiz_widget').onclick = (event) => {
                 handle_answer(event);
-            }
+            };
             
             return false;
         };  
@@ -167,6 +159,35 @@ function render_end() {
     }
 }
 
+function check_correct(correctAnswer) {
+    if(appState.userAnswer === correctAnswer){
+        appState.questions_correct +=1;
+        displayGoodMessage();
+
+        setTimeout(()=> {
+            if(appState.currentQuestionIndex < appState.totalQuestions) {
+            appState.currentQuestionIndex +=1;
+            create_question(appState.currentQuestionIndex);
+            }else if(appState.currentQuestionIndex === appState.totalQuestions){
+                render_end();
+            }
+        }, 1000);
+                
+    }else if(appState.userAnswer != correctAnswer){
+        appState.questions_wrong +=1;
+        displayBadMessage();
+
+        document.querySelector('#continue').onclick = () =>{
+            if(appState.currentQuestionIndex < appState.totalQuestions) {
+                appState.currentQuestionIndex +=1;
+                create_question(appState.currentQuestionIndex); 
+            } else {
+                render_end();
+            }
+        }
+    }
+}
+
 const render_view =(model,view)=>{
     template_source = document.querySelector(view).innerHTML;
     var template = Handlebars.compile(template_source);
@@ -193,39 +214,24 @@ const handle_answer = (event) =>{
     if(event.target.dataset.answer == "submit" ||event.target.dataset.but==="1" || event.target.dataset.but==='2'){
         appState.currentQuestion = model.results[appState.currentQuiz][`Question${appState.currentQuestionIndex}`];     
         const correctAnswer = appState.currentQuestion [`Correct_Answer`];
-
-        if(appState.userAnswer === correctAnswer){
-            appState.questions_correct +=1;
-            displayGoodMessage();
-
-            setTimeout(()=> {
-                if(appState.currentQuestionIndex < appState.totalQuestions) {
-                appState.currentQuestionIndex +=1;
-                create_question(appState.currentQuestionIndex); 
-                }else if(appState.currentQuestionIndex === appState.totalQuestions){
-                    render_end();
-                }
-            }, 1000);
-                    
-        }else if(appState.userAnswer != correctAnswer){
-            appState.questions_wrong +=1;
-            displayBadMessage();
-
-            document.querySelector('#continue').onclick = () =>{
-                if(appState.currentQuestionIndex < appState.totalQuestions) {
-                    appState.currentQuestionIndex +=1;
-                    create_question(appState.currentQuestionIndex); 
-                } else {
-                    render_end();
-                }
-            }
-        }
+        console.log(appState.userAnswer);
+        console.log(correctAnswer);
+        check_correct(correctAnswer);
     }
 }
 
 const create_question = (index) => {
     appState.currentQuestion = model.results[appState.currentQuiz][`Question${index}`];
-    render_view(model, "#multiple_choice")
+    appState.question_type = model.results[appState.currentQuiz][`Question${appState.currentQuestionIndex}`].QuestionType;
+    if(appState.question_type === 'multiple_choice'){
+        render_view(model, "#multiple_choice")
+    }
+    else if(appState.question_type === 'picture'){
+        render_view(model, "#picture")
+    }
+    else if(appState.question_type === 'narrative'){
+        render_view(model, "#narrative")
+    }
     displayElapsedTime();
     interval = setInterval(displayElapsedTime, 1000);
     return appState.currentQuestion; 

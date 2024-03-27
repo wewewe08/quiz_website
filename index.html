@@ -77,6 +77,77 @@
         </div>
     </script>
 
+    <script id= "picture" type="text/x-handlebars-template">
+        
+        <div class="container">
+            <div class="jumbotron text-center">
+                <h1>{{currentQuiz}}</h1>
+                <p>Good luck, {{Fname}}!</p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="questions">
+
+                        <h3 id="question_num"> Question: {{currentQuestion.Question}}</h3>
+                        
+                        <label >
+                            <img src="{{currentQuestion.Answers.[0]}}"><br><br>
+                            <input type="radio" value="{{currentQuestion.Answers.[0]}}" name="q2">
+                        </label>
+                    
+                        <label >
+                            <img src="{{currentQuestion.Answers.[1]}}"><br><br>
+                            <input type="radio" value="{{currentQuestion.Answers.[1]}}" name="q2">
+                        </label>
+
+                        <div id="answer">
+                            <input type="submit" data-answer="submit">
+                        </div>
+                    </div>
+                </div>
+                <div class = "col">
+                    <div id= "score-bar" class="counter" style="margin-top: 20px">
+                        <h4 id="correct">Questions Correct: {{questions_correct}}</h4>
+                        <h4 id="wrong">Questions Incorrect: {{questions_wrong}} </h4>
+                        <h4 id="timer">
+                            
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script id= "narrative" type="text/x-handlebars-template">
+        
+        <div class="container">
+            <div class="jumbotron text-center">
+                <h1>{{currentQuiz}}</h1>
+                <p>Good luck, {{Fname}}!</p>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="questions">
+
+                        <h3 id="question_num"> Question: {{currentQuestion.Question}}</h3>
+
+                        <button value="{{currentQuestion.Answers.[0]}}" data-but="1" name="button">{{currentQuestion.Answers.[0]}}</button>
+                        <button value="{{currentQuestion.Answers.[1]}}" data-but="2" name="button">{{currentQuestion.Answers.[1]}}</button>
+                    </div>
+                </div>
+                <div class = "col">
+                    <div id= "score-bar" class="counter" style="margin-top: 20px">
+                        <h4 id="correct">Questions Correct: {{questions_correct}}</h4>
+                        <h4 id="wrong">Questions Incorrect: {{questions_wrong}} </h4>
+                        <h4 id="timer">
+                            
+                        </h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
     <script id= "good_feedback" type="text/x-handlebars-template">
         <div class="jumbotron text-center">
             <h1>Correct!</h1>
